@@ -1,0 +1,6 @@
+.git
+.idea
+ansible
+*.log
+.env
+__pycache__
