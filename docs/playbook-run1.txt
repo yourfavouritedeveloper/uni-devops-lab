@@ -1,0 +1,70 @@
+[WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+[DEPRECATION WARNING]: ansible.builtin.apt_repository has been deprecated. Use deb822_repository instead. This feature will be removed from ansible-core version 2.25.
+Origin: /Users/mammadovnihad/Documents/exp/devops-task/uni-devops-lab/ansible/playbook.yml:28:7
+
+26
+27     - name: Add Docker apt repository
+28       ansible.builtin.apt_repository:
+         ^ column 7
+
+
+PLAY [Deploy University Student Portal] ****************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Host 'app1' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+ok: [app1]
+
+TASK [Install prerequisites for the Docker apt repository] *********************
+changed: [app1]
+
+TASK [Create apt keyrings directory] *******************************************
+ok: [app1]
+
+TASK [Add Docker GPG key] ******************************************************
+changed: [app1]
+
+TASK [Add Docker apt repository] ***********************************************
+[DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/mammadovnihad/Documents/exp/devops-task/uni-devops-lab/ansible/playbook.yml:29:15
+
+27     - name: Add Docker apt repository
+28       ansible.builtin.apt_repository:
+29         repo: >-
+                 ^ column 15
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+changed: [app1]
+
+TASK [Install Docker Engine and Compose plugin] ********************************
+changed: [app1]
+
+TASK [Ensure Docker service is started and enabled] ****************************
+changed: [app1]
+
+TASK [Create application directory] ********************************************
+changed: [app1]
+
+TASK [Copy Dockerfile, compose.yml and app/ to the server] *********************
+changed: [app1] => (item=Dockerfile)
+changed: [app1] => (item=compose.yml)
+changed: [app1] => (item=.dockerignore)
+changed: [app1] => (item=app)
+
+TASK [Write compose environment file with image name and port] *****************
+changed: [app1]
+
+TASK [Build image (only when files changed) and start Compose services] ********
+changed: [app1]
+
+TASK [Check portal health endpoint] ********************************************
+ok: [app1]
+
+TASK [Show health check result] ************************************************
+ok: [app1] => {
+    "msg": "Portal health on app1:8080 -> {'status': 'healthy'}"
+}
+
+PLAY RECAP *********************************************************************
+app1                       : ok=13   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
