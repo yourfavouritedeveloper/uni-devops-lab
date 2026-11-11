@@ -1,0 +1,12 @@
+# All tunable values live here; the playbook never hard-codes them.
+app_dir: /opt/student-portal
+portal_image: student-portal:1.0
+portal_port: 8080
+compose_project: student-portal
+health_path: /health
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
